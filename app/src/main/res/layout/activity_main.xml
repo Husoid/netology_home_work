@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/common_spacing"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <ImageView
         android:id="@+id/ivAvatar"
@@ -125,24 +125,24 @@
         app:layout_constraintTop_toTopOf="@+id/ivLike" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/ivViews"
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivLike"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        app:layout_constraintEnd_toStartOf="@+id/tvViews"
         app:layout_constraintTop_toTopOf="@+id/ivLike"
         app:srcCompat="@drawable/ic_viewed" />
 
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvViews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="8"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintBottom_toBottomOf="@+id/ivViews"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+        app:layout_constraintTop_toTopOf="@+id/ivViews" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
