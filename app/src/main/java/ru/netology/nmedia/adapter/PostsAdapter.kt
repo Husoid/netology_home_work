@@ -2,6 +2,7 @@ package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -9,16 +10,20 @@ import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 
-typealias OnClickListener = (post: Post) -> Unit
+interface OnClickListener {
+    fun onLikeListener(post: Post) {}
+    fun onShareListener(post: Post) {}
+    fun onViewsListener(post: Post) {}
+    fun onEdit(post: Post) {}
+    fun onRemove(post: Post) {}
+}
 
 class PostsAdapter(
-    private val onLikeListener: OnClickListener,
-    private val onShareListener: OnClickListener,
-    private val onViewsListener: OnClickListener,
+    private val onInteractionListener: OnClickListener,
 ) :  ListAdapter<Post, PostViewHolder> ( PostDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding, onLikeListener, onShareListener, onViewsListener)
+        return PostViewHolder(binding, onInteractionListener)
     }
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = getItem(position)
@@ -36,9 +41,7 @@ class PostDiffCallback: DiffUtil.ItemCallback<Post>() {
 }
 class PostViewHolder(
     private val binding: CardPostBinding,
-    private val onLikeListener: OnClickListener,
-    private val onShareListener: OnClickListener,
-    private val onViewsListener: OnClickListener
+    private val onInteractionListener: OnClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
         binding.apply {
@@ -52,13 +55,33 @@ class PostViewHolder(
             tvViews.text = displayNumbers(post.views)
 
             ivLike.setOnClickListener {
-                onLikeListener(post)
+                onInteractionListener.onLikeListener(post)
             }
             ivShare.setOnClickListener {
-                onShareListener(post)
+                onInteractionListener.onShareListener(post)
             }
             ivViews.setOnClickListener {
-                onViewsListener(post)
+                onInteractionListener.onViewsListener(post)
+            }
+
+            ibMenu.setOnClickListener {
+                PopupMenu(it.context, it).apply {
+                    inflate(R.menu.options_post)
+                    setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.remove -> {
+                                onInteractionListener.onRemove(post)
+                                true
+                            }
+                            R.id.edit -> {
+                                onInteractionListener.onEdit(post)
+                                true
+                            }
+
+                            else -> false
+                        }
+                    }
+                }.show()
             }
         }
     }
