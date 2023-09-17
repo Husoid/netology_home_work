@@ -9,112 +9,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/toolsTop1"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:constraint_referenced_ids="toolsTop1, contentOld, dontSave, pen, tvEdit" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/toolsTop1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="contentOld, dontSave, pen, tvEdit" />
-
-    <ImageButton
-        android:id="@+id/pen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/description_post_like"
-        app:layout_constraintBottom_toTopOf="@+id/content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list"
-        app:srcCompat="@drawable/ic_pen" />
-
-    <TextView
-        android:id="@+id/tvEdit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:hint="@string/post_text"
-        android:importantForAutofill="no"
-        android:padding="@dimen/common_spacing"
-        android:singleLine="true"
-        android:text="Edit Message"
-        android:textColor="@color/design_default_color_primary"
-        app:layout_constraintBottom_toTopOf="@+id/contentOld"
-        app:layout_constraintEnd_toStartOf="@id/save"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/pen"
-        app:layout_constraintTop_toBottomOf="@+id/list"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/contentOld"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:hint="@string/post_text"
-        android:importantForAutofill="no"
-        android:padding="@dimen/common_spacing"
-        android:singleLine="true"
-        app:layout_constraintBottom_toTopOf="@+id/content"
-        app:layout_constraintEnd_toStartOf="@id/save"
-        app:layout_constraintStart_toEndOf="@+id/pen" />
-
-    <ImageButton
-        android:id="@+id/dontSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/description_post_like"
-        app:layout_constraintBottom_toTopOf="@+id/content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/content"
-        app:layout_constraintTop_toBottomOf="@+id/list"
-        app:srcCompat="@drawable/ic_cancel" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/toolsTop2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="content,save" />
-
-    <EditText
-        android:id="@+id/content"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/post_text"
-        android:background="@android:color/transparent"
-        android:padding="@dimen/common_spacing"
-        android:inputType="textMultiLine"
-        android:importantForAutofill="no"
-        app:layout_constraintTop_toTopOf="@id/toolsTop2"
+        android:layout_margin="@dimen/fab_margin"
+        android:contentDescription="@string/add_post"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/save"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
-    <ImageButton
-        android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_spacing"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/description_post_like"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/ic_save_48"
-        />
+        app:srcCompat="@drawable/ic_add_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
