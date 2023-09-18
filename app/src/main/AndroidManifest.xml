@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nmedia"
         tools:targetApi="31">
+
         <activity
             android:name=".activity.MainActivity"
             android:exported="true">
@@ -20,6 +21,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".activity.NewPostActivity"
@@ -32,6 +34,12 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-    </application>
 
+    </application>
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="*" />
+        </intent>
+    </queries>
 </manifest>
